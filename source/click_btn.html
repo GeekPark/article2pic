@@ -1,0 +1,29 @@
+<div class="plugin-inject-btn" id="plugin-inject-btn">
+  <a href="javascript:;" id="plugin-post-to-wechat" class="plugin-post-to-wechat">发布到微信</a><br>
+  <a href="javascript:;" id="plugin-post-to-weibo" class="plugin-post-to-weibo">发布到微博</a>
+</div>
+<style>
+  .plugin-inject-btn {
+    position: fixed;
+    right: 10px;
+    top: 80px;
+    z-index: 9;
+  }
+  .plugin-post-to-wechat,.plugin-post-to-weibo {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid #1B9B5F;
+    text-decoration: none;
+    color: #FFFFFF;
+    background: #1D9B5F;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+  }
+  .plugin-post-to-weibo {
+    background: #BD3232;
+    border-color: #DD3939;
+  }
+  .plugin-post-to-wechat:hover,.plugin-post-to-weibo:hover {
+    margin-left: -10px;
+  }
+</style>

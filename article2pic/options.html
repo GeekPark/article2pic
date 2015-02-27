@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>请输入注册码</title>
+  <style>
+    .root {
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 30px;
+      display: none;
+    }
+    .logo {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      top: 8px;
+      vertical-align: top;
+    }
+    .title {
+      display: inline-block;
+      font-size: 16px;
+    }
+    .header {
+      background-color: #eee;
+      border-bottom: 3px solid #bbb;
+      padding-left: 8px;
+    }
+    .valid {
+      padding: 20px;
+      background: #f1f1f1;
+    }
+    .valid input {
+      width: 300px;
+      letter-spacing: 1.4px;
+      padding: 0 5px;
+    }
+
+  </style>
+</head>
+<body class="option">
+  <div class="root">
+    <div class="header">
+      <img src="icon.png" class="logo">
+      <h1 class="title" id="title">本插件仅作学习交流使用，为防止插件滥用，请输入注册码。</h1>
+    </div>
+    <div class="valid">
+      <input type="text" id="unlockkey" autofocus>
+      <button id="valid-btn">验证</button>
+      <em class="tip" id="tip"></em>
+    </div>
+  </div>
+  <script src="dist/main.min.js"></script>
+</body>
+</html>

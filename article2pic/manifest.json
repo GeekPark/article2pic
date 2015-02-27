@@ -1,0 +1,24 @@
+{
+	"name": "超图imooc快进",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "用于快速完成网上公选课，仅作学习交流使用",
+	"icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*.chaoxing.com/*"],
+      "js": ["dist/main.min.js"]
+    }
+  ],
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    "dist/moocplayer.js"
+  ]
+}

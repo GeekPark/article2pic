@@ -1,0 +1,24 @@
+{
+	"name": "article2pic",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "将文章转化成长微博",
+	"icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://lh:3000/topics/*"],
+      "js": ["dist/main.min.js"]
+    }
+  ],
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    "click_btn.html"
+  ]
+}
