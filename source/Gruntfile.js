@@ -7,7 +7,22 @@ module.exports = function(grunt) {
           compress: false
         },
         files: {
-          'dist/main.min.js': ['src/js/jquery.min.js', 'src/js/main.js']
+          'dist/main.min.js': [
+            'src/js/jquery.min.js',
+            'src/js/common.js',
+            'src/js/main.js',
+            'src/js/option.js'
+          ]
+        }
+      }
+    },
+    sass: {
+      options: {
+        sourceMap: false
+      },
+      dist: {
+        files: {
+          'dist/option.css': 'src/css/option.scss'
         }
       }
     },
@@ -16,7 +31,12 @@ module.exports = function(grunt) {
       deploy: {
         files: [
           // includes files within path
-          {expand: true, src: ['dist/**', 'icon.png', 'manifest.json', '*.html'], dest: '../article2pic/'}
+          {expand: true, src: [
+            'dist/**',
+            'icon.png',
+            'manifest.json',
+            '*.html'
+          ], dest: '../article2pic/'}
         ],
       },
     },
@@ -24,6 +44,10 @@ module.exports = function(grunt) {
       js:{
         files: 'src/js/*.js',
         tasks:['uglify']
+      },
+      sass: {
+        files: 'src/css/*.scss',
+        tasks:['sass']
       }
     },
   });
@@ -33,6 +57,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['uglify', 'watch']);
-  grunt.registerTask('deploy', ['uglify', 'clean', 'copy:deploy']);
+  grunt.registerTask('default', ['uglify', 'sass', 'watch']);
+  grunt.registerTask('deploy', ['uglify', 'sass', 'clean', 'copy:deploy']);
 };

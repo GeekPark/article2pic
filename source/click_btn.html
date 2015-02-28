@@ -1,6 +1,8 @@
 <div class="plugin-inject-btn" id="plugin-inject-btn">
-  <a href="javascript:;" id="plugin-post-to-wechat" class="plugin-post-to-wechat">发布到微信</a><br>
-  <a href="javascript:;" id="plugin-post-to-weibo" class="plugin-post-to-weibo">发布到微博</a>
+  <a href="javascript:;" id="plugin-post-to-wechat" class="plugin-btn plugin-post-to-wechat">发布到微信</a><br>
+  <a href="javascript:;" id="plugin-post-to-weibo" class="plugin-btn plugin-post-to-weibo">发布到微博</a><br>
+  <a href="javascript:;" id="plugin-add-footerpic" class="plugin-btn plugin-add-footerpic">文章底图</a><br>
+  <a href="javascript:;" id="plugin-changestyle" class="plugin-btn plugin-changestyle">更换样式</a>
 </div>
 <style>
   .plugin-inject-btn {
@@ -9,7 +11,7 @@
     top: 80px;
     z-index: 9;
   }
-  .plugin-post-to-wechat,.plugin-post-to-weibo {
+  .plugin-btn {
     display: inline-block;
     padding: 8px 20px;
     border: 1px solid #1B9B5F;
@@ -17,13 +19,25 @@
     color: #FFFFFF;
     background: #1D9B5F;
     margin-bottom: 10px;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
     transition: all 0.3s ease;
+    width: 122px;
+    box-sizing: border-box;
+    text-align: center;
   }
   .plugin-post-to-weibo {
     background: #BD3232;
     border-color: #DD3939;
   }
-  .plugin-post-to-wechat:hover,.plugin-post-to-weibo:hover {
+  .plugin-add-footerpic {
+    background: #1D889B;
+    border-color: #5CB2C2;
+  }
+  .plugin-changestyle {
+    background: #994CB8;
+    border-color: #C062E5;
+  }
+  .plugin-btn:hover {
     margin-left: -10px;
   }
 </style>
