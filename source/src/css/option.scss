@@ -26,8 +26,9 @@ body {
       color: #888;
     }
     .cont {
-      border-bottom: 1px solid #eee;
-      padding-top: 15px;
+      border-top: 1px solid #eee;
+      margin-top: 8px;
+      padding-top: 8px;
     }
   }
 
@@ -46,13 +47,41 @@ body {
     cursor: pointer;
     border: 1px solid #aaa;
     img {
-      width: 100%;
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
       right: 0;
       margin: auto;
+    }
+    .des {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      padding: 5px;
+      display: inline-block;
+      background: rgba(0,0,0,.7);
+      color: #aaa;
+      border: 1px solid #aaa;
+      border-left: none;
+    }
+    .deleteimg {
+      position: absolute;
+      top: 50%;
+      background: rgba(252, 76, 76, 0.82);
+      border-left: none;
+      border-color: rgba(228, 158, 158, 0.73);
+      color: rgba(255, 255, 255, 0.69);
+      margin-top: -15px;
+      left: -100px;
+      transition: all 0.3s;
+      border-radius: 0 5px 5px 0;
+      &:hover {
+        background-color: rgba(252, 76, 76, 1);
+      }
+    }
+    &:hover .deleteimg {
+      left: 0;
     }
     &.add img {
       width: 60px;
@@ -72,6 +101,34 @@ body {
       }
     }
   }
+  .article-style {
+    .cont textarea {
+      width: 100%;
+      min-height: 250px
+    }
+    li {
+      margin: 3px 0;
+      line-height: 30px;
+      input {
+        outline-color: #58a113;
+        outline-width: 1px;
+        line-height: 20px;
+        font-size: 0.8rem;
+        color: #58a113;
+        padding: 0 2px;
+        width: 80%;
+      }
+    }
+    .head {
+      position: relative;
+    }
+    .btn.save {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      margin-top: -15px;
+    }
+  }
   .hide {
     display: none;
   }
@@ -88,6 +145,8 @@ body {
     font-size: 1rem;
     cursor: pointer;
     outline: none;
+    border-radius: 5px;
+    color: #fff;
     &:hover {
       background: #9CDB61;
     }

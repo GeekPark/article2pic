@@ -54,10 +54,7 @@ $(function() {
     pushToContent('article-title', article.title);
     pushToContent('article-date', article.date);
     pushToContent('article-author', article.author);
-    pushToContent('article-data', article.data);
     pushToContent('article-content', article.content, 'dom');
-
-    console.log($dom);
 
     function pushToContent (classname, data, type) {
       type = type || 'text';
