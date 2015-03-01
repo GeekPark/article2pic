@@ -118,10 +118,5 @@ $(function() {
       pluginTool.save('style', jsondata);
       location.reload();
     });
-
-
-
   })();
-
-
 });

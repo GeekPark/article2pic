@@ -128,6 +128,19 @@ $(function() {
       'background-color': '#efefef'
     });
 
+    // Load user style
+    pluginTool.read('style', function(data) {
+      var style = $.parseJSON(data.style);
+      for (var i = 0; i < style.length; i++) {
+        var item = style[i],
+            $target = $content.find(item.selector),
+            oldstyle = $target.attr('style');
+
+        $target.attr('style',oldstyle + item.value);
+
+      };
+    });
+
     function applyCSS (selector, cssRule) {
       $content.find(selector).css(cssRule);
     }
