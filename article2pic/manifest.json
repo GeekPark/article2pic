@@ -1,24 +1,27 @@
 {
-	"name": "超图imooc快进",
+	"name": "极客公园文章优化",
 	"version": "1.0",
 	"manifest_version": 2,
-	"description": "用于快速完成网上公选课，仅作学习交流使用",
+	"description": "将文章转化微信友好格式或保存为长微博图片",
 	"icons": {
     "16": "icon.png",
     "48": "icon.png",
     "128": "icon.png"
   },
   "permissions": [
-    "storage"
+    "http://*/",
+    "storage",
+    "downloads"
   ],
   "content_scripts": [
     {
-      "matches": ["http://*.chaoxing.com/*"],
+      "matches": ["http://*.geekpark.net/topics/*"],
       "js": ["dist/main.min.js"]
     }
   ],
   "options_page": "options.html",
   "web_accessible_resources": [
-    "dist/moocplayer.js"
+    "click_btn.html",
+    "options.html"
   ]
 }

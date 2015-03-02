@@ -1,0 +1,125 @@
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  background-color: #eee; }
+
+.plugin-option {
+  width: 60%;
+  margin: 50px auto; }
+  .plugin-option .item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #fff; }
+    .plugin-option .item .head {
+      border-left: 5px solid #7fc042;
+      padding-left: 20px; }
+    .plugin-option .item .title {
+      font-size: 1.3rem;
+      margin: 3px 0; }
+    .plugin-option .item .des {
+      font-size: 0.9rem;
+      color: #888; }
+    .plugin-option .item .cont {
+      border-top: 1px solid #eee;
+      margin-top: 8px;
+      padding-top: 8px; }
+  .plugin-option .pic-item {
+    width: 256px;
+    height: 148px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background: #eee;
+    border-radius: 5px;
+    margin: 5px;
+    opacity: 1;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: 1px solid #aaa; }
+    .plugin-option .pic-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto; }
+    .plugin-option .pic-item .des {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      padding: 5px;
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.7);
+      color: #aaa;
+      border: 1px solid #aaa;
+      border-left: none; }
+    .plugin-option .pic-item .deleteimg {
+      position: absolute;
+      top: 50%;
+      background: rgba(252, 76, 76, 0.82);
+      border-left: none;
+      border-color: rgba(228, 158, 158, 0.73);
+      color: rgba(255, 255, 255, 0.69);
+      margin-top: -15px;
+      left: -100px;
+      transition: all 0.3s;
+      border-radius: 0 5px 5px 0; }
+      .plugin-option .pic-item .deleteimg:hover {
+        background-color: #fc4c4c; }
+    .plugin-option .pic-item:hover .deleteimg {
+      left: 0; }
+    .plugin-option .pic-item.add img {
+      width: 60px;
+      display: none; }
+      .plugin-option .pic-item.add img.show {
+        display: block; }
+    .plugin-option .pic-item.hover:hover {
+      opacity: .6; }
+    .plugin-option .pic-item .form {
+      margin: 10px;
+      display: none; }
+      .plugin-option .pic-item .form.show {
+        display: block; }
+  .plugin-option .article-style .cont textarea {
+    width: 100%;
+    min-height: 250px; }
+  .plugin-option .article-style li {
+    margin: 3px 0;
+    line-height: 30px; }
+    .plugin-option .article-style li input {
+      outline-color: #58a113;
+      outline-width: 1px;
+      line-height: 20px;
+      font-size: 0.8rem;
+      color: #58a113;
+      padding: 0 2px;
+      width: 80%; }
+  .plugin-option .article-style .head {
+    position: relative; }
+  .plugin-option .article-style .btn.save {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -15px; }
+  .plugin-option .hide {
+    display: none; }
+  .plugin-option .input-item {
+    margin: 5px auto; }
+  .plugin-option .btn {
+    text-decoration: none;
+    color: #222;
+    background: #7fc042;
+    display: inline-block;
+    padding: 5px 15px;
+    border: 1px solid #58A113;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    color: #fff;
+    transition: all 0.3s ease; }
+    .plugin-option .btn:hover {
+      background: #9CDB61; }
+
+/*# sourceMappingURL=option.css.map */
