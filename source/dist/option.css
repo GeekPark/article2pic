@@ -117,7 +117,8 @@ body {
     cursor: pointer;
     outline: none;
     border-radius: 5px;
-    color: #fff; }
+    color: #fff;
+    transition: all 0.3s ease; }
     .plugin-option .btn:hover {
       background: #9CDB61; }
 

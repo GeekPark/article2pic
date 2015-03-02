@@ -9,6 +9,7 @@ module.exports = function(grunt) {
         files: {
           'dist/main.min.js': [
             'src/js/jquery.min.js',
+            'src/js/html2canvas.min.js',
             'src/js/common.js',
             'src/js/main.js',
             'src/js/option.js'

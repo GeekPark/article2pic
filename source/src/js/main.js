@@ -2,19 +2,7 @@ $(function() {
   // the module just run in article page!
   if(!/topics/.test(window.location.pathname)) return false;
 
-  // inject btn to page
-  (function() {
-    var btnurl = chrome.extension.getURL('click_btn.html');
-    $.get(btnurl, function(data) {
-      $('body').append(data);
-    });
 
-    var left = ($(document).width() - $('.container').width())/2;
-    $('#plugin-inject-btn').css('left', left);
-
-    // when click btn then clean page
-
-  })();
 
   var generPage = function() {
     var $root = $('.container'),
@@ -31,7 +19,6 @@ $(function() {
 
     var $dom = $('#pluginDOM'),
         $content = $dom.find('#plugin-content');
-
 
     $dom.css({
       'position': 'absolute',
@@ -55,6 +42,9 @@ $(function() {
     pushToContent('article-date', article.date);
     pushToContent('article-author', article.author);
     pushToContent('article-content', article.content, 'dom');
+
+    // append footerimg dom
+    $content.append('<img id="article-footerimg" class="hide"></div>');
 
     function pushToContent (classname, data, type) {
       type = type || 'text';
@@ -110,12 +100,6 @@ $(function() {
       'margin-top': '10px'
     });
 
-    applyCSS('.main-pic img', {
-      'width': '100%',
-      'max-width': '100%',
-      'margin-bottom': '0'
-    });
-
     applyCSS('.abstract', {
       'padding': '18px',
       'font-size': '0.9375em',
@@ -134,21 +118,123 @@ $(function() {
       for (var i = 0; i < style.length; i++) {
         var item = style[i],
             $target = $content.find(item.selector),
-            oldstyle = $target.attr('style');
+            oldstyle = $target.attr('style'),
+            newstyle = item.value;
 
-        $target.attr('style',oldstyle + item.value);
-
+        if(oldstyle) newstyle = oldstyle + newstyle;
+        $target.attr('style', newstyle);
       };
+
+      // user can't adjust banner img size
+      applyCSS('.main-pic img', {
+        'width': '100%',
+        'max-width': '100%',
+        'margin-bottom': '0'
+      });
     });
+
+    // change footer img
+    (function() {
+      var $panel = $('#plugin-option-panel'),
+          $nowPanel = $panel.find('#footerimg-panel'),
+          $template = $nowPanel.find('#footerimg-option-template');
+
+      // Get all footerimg and fill to option
+      pluginTool.read('footerimg', function(data) {
+        var imgdata = $.parseJSON(data.footerimg);
+        for (img in imgdata) {
+          var name = img,
+              url  = imgdata[img],
+              $item = $template.clone();
+
+          $item.removeClass('hide');
+          $item.css({
+            'background-image': 'url('+ url +')'
+          });
+          $item.data('imgurl', url);
+          $item.find('.name').text(name);
+          $item.removeAttr('id');
+          $item.removeClass('hide');
+          $nowPanel.append($item);
+        }
+
+        // img hover blur effect
+        $nowPanel.find('.footerimg-item').hover(function(event) {
+          $(this).siblings('.footerimg-item').addClass('blur');
+        }, function() {
+          $(this).siblings().removeClass('blur');
+        });
+
+        // footerimg btn click listener .
+        $nowPanel.find('.footerimg-item').on('click', function () {
+          var imgurl = $(this).data('imgurl'),
+              $footerimg = $content.find('#article-footerimg');
+
+          $footerimg
+            .attr('src', imgurl)
+            .removeClass('hide')
+            .css({
+              'width': '100%',
+              'max-width': '100%'
+            });
+
+          // slide to bottom
+          $('html,body').animate({
+            scrollTop: parseInt($footerimg.offset().top - 250) + 'px'
+          }, 800);
+        });
+
+      });
+
+    })(); // change footer img end
+
+    var optionPanel = (function() {
+      var $panelDOM = $('#plugin-option-panel');
+      function show () {
+        $panelDOM.addClass('show');
+        $panelDOM.css('top', 80 + $('#plugin-inject-btn').height() + 'px');
+      }
+
+      function hide () {
+        $panelDOM.removeClass('show');
+      }
+      return {
+        show: show,
+        hide: hide
+      };
+    })();
+
+    optionPanel.show();
 
     function applyCSS (selector, cssRule) {
       $content.find(selector).css(cssRule);
     }
+  }; // generPage() end
 
+  // inject btn to page
+  (function() {
+    var btnurl = chrome.extension.getURL('click_btn.html');
+    $.get(btnurl, function(data) {
+      $('body').append(data);
 
-  };
+      // generPage when click post btn
+      $('#plugin-post-to-wechat,#plugin-post-to-weibo').on('click', function () {
+        generPage();
+        // hide btn and get type
+        $('#plugin-post-to-wechat,#plugin-post-to-weibo').addClass('hide');
+        var type = $(this).data('type');
+        if(type == 'weibo') {
+          $('#plugin-generpic').removeClass('hide');
+        }
+      });
+    });
 
-  generPage();
+    var left = ($(document).width() - $('.container').width())/2;
+    $('#plugin-inject-btn').css('left', left);
+
+    // when click btn then clean page
+
+  })();
 
 
 });
