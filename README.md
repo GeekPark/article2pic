@@ -5,7 +5,7 @@
 ####License: [MIT](http://choosealicense.com/licenses/mit/)
 
 ###安装
-1. 下载[article2pic.crx](http://www.geekpark.net)文件
+1. 下载[article2pic.crx](https://raw.githubusercontent.com/liyaodong/article2pic/master/article2pic.crx)文件
 2. 打开Chrome浏览器，进入`chrome://extensions/`地址。将下载好的crx插件拖入该页面并点击`add`或`添加`。
 
 ###使用
@@ -35,4 +35,6 @@ Tip: 在你点击「生成长图」后文章不可编辑，需刷新页面重新
 选项页面新增文章底图，如果和已有底图名称一致则会覆盖
 
 ###插件截图
-
+![文章详情页](https://raw.githubusercontent.com/liyaodong/article2pic/master/screenshort/home.jpg)
+***
+![插件选项页](https://raw.githubusercontent.com/liyaodong/article2pic/master/screenshort/option.jpg)
