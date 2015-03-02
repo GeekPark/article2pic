@@ -69,7 +69,14 @@ $(function() {
     var $template = $('#pic-item-template');
 
     pluginTool.read('footerimg', function(data) {
-      var imgs = $.parseJSON(data.footerimg);
+      var img;
+
+      if(!$.isEmptyObject(data.footerimg)) {
+        imgs = $.parseJSON(data.footerimg);
+      } else {
+        imgs = {};
+      }
+
       for (img in imgs) {
         $item = $template.clone();
         $item.css({
@@ -93,7 +100,7 @@ $(function() {
 
     // loda storaged data
     pluginTool.read('style', function(data) {
-      if(!$.isEmptyObject(data)) {
+      if(!$.isEmptyObject(data.style)) {
         var style = $.parseJSON(data.style);
         for (var i = 0; i < style.length; i++) {
           var item = style[i];

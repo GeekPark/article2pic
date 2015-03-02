@@ -112,6 +112,13 @@ $(function() {
       'background-color': '#efefef'
     });
 
+    // user can't adjust banner img size
+    applyCSS('.main-pic img', {
+      'width': '100%',
+      'max-width': '100%',
+      'margin-bottom': '0'
+    });
+
     // Load user style
     pluginTool.read('style', function(data) {
       var style = $.parseJSON(data.style);
@@ -126,7 +133,7 @@ $(function() {
       };
 
       // user can't adjust banner img size
-      applyCSS('.main-pic img', {
+      applyCSS('img', {
         'width': '100%',
         'max-width': '100%',
         'margin-bottom': '0'
@@ -141,7 +148,12 @@ $(function() {
 
       // Get all footerimg and fill to option
       pluginTool.read('footerimg', function(data) {
-        var imgdata = $.parseJSON(data.footerimg);
+        var imgdata;
+        if(!$.isEmptyObject(data.footerimg)) {
+          imgdata = $.parseJSON(data.footerimg);
+        } else {
+          imgdata = {};
+        }
         for (img in imgdata) {
           var name = img,
               url  = imgdata[img],

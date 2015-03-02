@@ -34,11 +34,14 @@ window.pluginTool = (function($,window) {
         obj = {};
       }
 
+
       // add new data to old option
       obj[key] = value;
 
       // encode data to json
       var newoption = JSON.stringify(obj);
+
+      console.log(obj);
 
       // save to storage
       saveData(type, newoption);

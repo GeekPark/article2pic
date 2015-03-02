@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
     clean: {
       options: { force: true },
-      stuff: ["../article2pic/", "../*.crx", "../*.pem"]
+      stuff: ["../article2pic/", "../*.crx"]
     },
     copy: {
       deploy: {
