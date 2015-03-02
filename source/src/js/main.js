@@ -222,10 +222,35 @@ $(function() {
         generPage();
         // hide btn and get type
         $('#plugin-post-to-wechat,#plugin-post-to-weibo').addClass('hide');
+        $('#plugin-manage-footerimg').removeClass('hide')
+                                    .on('click', function () {
+                                      window.open(chrome.extension.getURL("options.html"));
+                                    });
+
         var type = $(this).data('type');
         if(type == 'weibo') {
           $('#plugin-generpic').removeClass('hide');
         }
+
+        $('#plugin-generpic').on('click', function () {
+          // translate dom to pic and download
+          var element = document.getElementById('plugin-content');
+          html2canvas(element, {
+            allowTaint: true,
+            onrendered: function(canvas) {
+              $('#plugin-content').remove();
+              $('#pluginDOM').append(canvas);
+              alert('长图已生成，请右键保存');
+            }
+          });
+
+          // chrome.tabs.captureVisibleTab(function(data) {
+          //   console.log(data);
+          // });
+
+        });
+
+
       });
     });
 
