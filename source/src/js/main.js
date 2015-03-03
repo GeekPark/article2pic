@@ -57,11 +57,18 @@ $(function() {
     };
 
     // adjust <img> size
-    applyCSS('img',{
+    applyCSS('img[itemprop!="image"]',{
       'max-width': '95%',
       'display': 'block',
       'margin': '10px auto',
       'height': 'auto'
+    });
+
+    applyCSS('img[itemprop="image"]',{
+      'width': '100%',
+      'margin': '0',
+      'height': 'auto',
+      'display': 'block'
     });
     applyCSS('figure', {'margin': '0'});
 
@@ -126,13 +133,6 @@ $(function() {
         if(oldstyle) newstyle = oldstyle + newstyle;
         $target.attr('style', newstyle);
       };
-
-      // user can't adjust banner img size
-      applyCSS('.main-pic img', {
-        'width': '100%',
-        'max-width': '100%',
-        'margin-bottom': '0'
-      });
     });
 
     // change footer img
