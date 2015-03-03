@@ -60,7 +60,8 @@ $(function() {
     applyCSS('img',{
       'max-width': '95%',
       'display': 'block',
-      'margin': '10px auto'
+      'margin': '10px auto',
+      'height': 'auto'
     });
     applyCSS('figure', {'margin': '0'});
 
@@ -73,8 +74,10 @@ $(function() {
 
     // adjust style
     applyCSS('.article-content p', {
-      'margin': '1.8em auto',
-      'line-height': '1.5em'
+      'margin': '1.8em 0',
+      'line-height': '1.7rem',
+      'text-align': 'justify',
+      'text-justify': 'ideographic'
     });
 
     applyCSS('h2', {
@@ -105,18 +108,10 @@ $(function() {
       'font-size': '0.9375em',
       'color': 'rgba(38,38,38,0.82)',
       'line-height': '1.6',
-      'margin-top': '0',
-      'margin-bottom': '20px',
+      'margin': '0',
       'border': '#efefef 1px solid',
       'border-radius': '0px 0px 4px 4px',
       'background-color': '#efefef'
-    });
-
-    // user can't adjust banner img size
-    applyCSS('.main-pic img', {
-      'width': '100%',
-      'max-width': '100%',
-      'margin-bottom': '0'
     });
 
     // Load user style
@@ -133,7 +128,7 @@ $(function() {
       };
 
       // user can't adjust banner img size
-      applyCSS('img', {
+      applyCSS('.main-pic img', {
         'width': '100%',
         'max-width': '100%',
         'margin-bottom': '0'

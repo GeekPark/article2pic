@@ -38,3 +38,6 @@ Tip: 在你点击「生成长图」后文章不可编辑，需刷新页面重新
 ![文章详情页](https://raw.githubusercontent.com/liyaodong/article2pic/master/screenshort/home.jpg)
 ***
 ![插件选项页](https://raw.githubusercontent.com/liyaodong/article2pic/master/screenshort/option.jpg)
+
+###版本更新
+v1.1 调整文章样式，去除摘要边距，增加自定义摘要、文章着重（加粗）的样式自定义
