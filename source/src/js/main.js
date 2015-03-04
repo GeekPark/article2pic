@@ -81,16 +81,20 @@ $(function() {
 
     // adjust style
     applyCSS('.article-content p', {
-      'margin': '1.8em 0',
+      'margin': '1.6em 0',
       'line-height': '1.7rem',
       'text-align': 'justify',
       'text-justify': 'ideographic'
     });
 
     applyCSS('h2', {
-      'font-size': '1.5em',
+      'font-size': '1.8em',
       'border-left': '10px solid #7fc042',
-      'padding-left': '0.5em'
+      'padding-left': '0.5em',
+      'margin': '0.6em auto',
+      'font-weight': '200',
+      'line-height': '1.5em',
+      'color': '#000'
     });
 
     applyCSS('.article-title', {
