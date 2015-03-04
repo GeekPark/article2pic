@@ -2,6 +2,8 @@ $(function() {
   // the module just run in article page!
   if(!/topics/.test(window.location.pathname)) return false;
 
+  var remoteStyleUrl = 'http://innoawards.geekpark.net/artile2pic-remotestyle.js';
+
 
 
   var generPage = function() {
@@ -75,16 +77,33 @@ $(function() {
     // delete needless node
     $content.find('.share').remove();
     $content.find('.gp_media_video').remove();
+    // remove all empty p tag
+    $content.find('p').filter(function () {
+      return this.innerHTML
+        .replace("&nbsp;"," ")
+        .trim()
+        == ""
+    }).remove();
+
+    // put data from <figure> tag
+    // wechat will auto add <p> to <figure>
+    (function() {
+      var $figure = $content.find('figure').eq(0);
+      var $bannerimg = $figure.find('img').clone();
+
+      console.log($figure);
+      $figure.after($bannerimg);
+      $figure.remove();
+    })();
+
 
     // content editable
     $content.attr('contentEditable', 'true');
 
     // adjust style
     applyCSS('.article-content p', {
-      'margin': '1.6em 0',
-      'line-height': '1.7rem',
-      'text-align': 'justify',
-      'text-justify': 'ideographic'
+      'margin': '1.4em 0',
+      'line-height': '1.7rem'
     });
 
     applyCSS('h2', {
@@ -92,7 +111,7 @@ $(function() {
       'border-left': '10px solid #7fc042',
       'padding-left': '0.5em',
       'margin': '0.6em auto',
-      'font-weight': '200',
+      'font-weight': '400',
       'line-height': '1.5em',
       'color': '#000'
     });
@@ -108,13 +127,25 @@ $(function() {
       'color': '#888'
     });
 
+    applyCSS('a', {
+      'color': '#1ABC9C'
+    });
+
     applyCSS('.article-content', {
       'padding-top': '6px',
       'border-top': '1px solid #ddd',
       'margin-top': '10px'
     });
 
-    applyCSS('.abstract', {
+    applyCSS('blockquote', {
+      'color': '#666666',
+      'font-size': '1em',
+      'padding-left': '1em',
+      'border-left': '4px solid #dddddd',
+      'line-height': '1.5em'
+    });
+
+    applyCSS('blockquote.abstract', {
       'padding': '18px',
       'font-size': '0.9375em',
       'color': 'rgba(38,38,38,0.82)',
@@ -125,11 +156,36 @@ $(function() {
       'background-color': '#efefef'
     });
 
-    // Load user style
-    pluginTool.read('style', function(data) {
-      var style = $.parseJSON(data.style);
-      for (var i = 0; i < style.length; i++) {
-        var item = style[i],
+
+
+
+
+
+    // Load remote style . Security ?
+    // Remote style should be a JSON
+    // format:
+    // [
+    //   {"selector":".article-title","value":"font-size: 12em;"},
+    //   {"selector":".article-date","value":"balabala"},
+    //   {"selector":".article-author","value":"nihaowa"}
+    // ]
+    // like bwlow data
+    $.getJSON(remoteStyleUrl, function(remoteStyle) {
+      applyStyle(remoteStyle);
+
+      // Load user style
+      pluginTool.read('style', function(data) {
+        var userStyle = $.parseJSON(data.style);
+        applyStyle(userStyle);
+      });
+    });
+
+
+
+
+    function applyStyle (styleArr) {
+      for (var i = 0; i < styleArr.length; i++) {
+        var item = styleArr[i],
             $target = $content.find(item.selector),
             oldstyle = $target.attr('style'),
             newstyle = item.value;
@@ -137,7 +193,7 @@ $(function() {
         if(oldstyle) newstyle = oldstyle + newstyle;
         $target.attr('style', newstyle);
       };
-    });
+    }
 
     // change footer img
     (function() {

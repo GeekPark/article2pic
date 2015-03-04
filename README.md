@@ -5,7 +5,7 @@
 ####License: [MIT](http://choosealicense.com/licenses/mit/)
 
 ###安装
-1. 下载[article2pic.crx](https://raw.githubusercontent.com/liyaodong/article2pic/master/article2pic.crx)文件
+1. 下载最新版[article2pic.crx](https://raw.githubusercontent.com/liyaodong/article2pic/master/article2pic.crx)文件
 2. 打开Chrome浏览器，进入`chrome://extensions/`地址。将下载好的crx插件拖入该页面并点击`add`或`添加`。
 
 ###使用
@@ -41,3 +41,6 @@ Tip: 在你点击「生成长图」后文章不可编辑，需刷新页面重新
 
 ###版本更新
 v1.1 调整文章样式，去除摘要边距，增加自定义摘要、文章着重（加粗）的样式自定义
+
+
+v1.2 继续调整文章样式，删除空白`<p>`，将图片从`<figure>`中移出。添加远程样式控制，以后直接在远程修改默认样式，不会影响用户所自定义的样式。二次开发请编辑`source/src/main.js`中的外部样式地址。

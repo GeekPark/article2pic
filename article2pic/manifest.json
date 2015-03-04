@@ -1,6 +1,6 @@
 {
 	"name": "极客公园文章优化",
-	"version": "1.1",
+	"version": "1.2",
 	"manifest_version": 2,
 	"description": "将文章转化微信友好格式或保存为长微博图片",
 	"icons": {
