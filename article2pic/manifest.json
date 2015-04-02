@@ -9,7 +9,8 @@
     "128": "icon.png"
   },
   "permissions": [
-    "http://*/",
+    "http://*/*",
+    "https://*/*",
     "storage",
     "downloads"
   ],

@@ -284,7 +284,8 @@ $(function() {
 
   // inject btn to page
   (function() {
-    var btnurl = chrome.extension.getURL('click_btn.html');
+    var btnurl = chrome.extension.getURL('click_btn.html'),
+        $pluginContent = $('#plugin-content')
     $.get(btnurl, function(data) {
       $('body').append(data);
 
@@ -302,7 +303,8 @@ $(function() {
         if(type == 'weibo') {
           $('#plugin-generpic').removeClass('hide');
           // weibo style
-          $('#plugin-content').css({
+
+          $pluginContent.css({
             'width': '570px',
             'padding': '15px',
             'font-size': '25px'
@@ -313,7 +315,8 @@ $(function() {
           });
 
           // 微博长图将所有的h2替换，因为h2转图片会使标题字错乱
-          $('#plugin-content').find('h2').each(function() {
+          // hack : fix h2 title text insanity error
+          $pluginContent.find('h2').each(function() {
             var $this = $(this);
             var style = $this.attr('style');
             var $newTitle = $(document.createElement('div'));
@@ -323,6 +326,10 @@ $(function() {
             $this.after($newTitle);
             $this.remove();
           });
+
+
+          // set crossOrigin be avoid canvas toDataURL security exception
+          $pluginContent.find('img').prop('crossOrigin', 'Anonymous');
         }
 
         $('#plugin-generpic').on('click', function () {
@@ -331,19 +338,20 @@ $(function() {
           html2canvas(element, {
             allowTaint: true,
             onrendered: function(canvas) {
+              // var img = canvas.toDataURL("image/jpeg");
               $('#plugin-content').remove();
+              // console.log(canvas.toDataURL());
               $('#pluginDOM').append(canvas);
-              alert('长图已生成，请右键保存');
+              // console.log(img);
+              // $('#pluginDom')
+              // download(img, document.title + ".jpg", "image/jpeg");
             }
           });
 
           // chrome.tabs.captureVisibleTab(function(data) {
           //   console.log(data);
           // });
-
         });
-
-
       });
     });
 
@@ -354,5 +362,44 @@ $(function() {
 
   })();
 
+  function download(strData, strFileName, strMimeType) {
+    var D = document,
+      A = arguments,
+      a = D.createElement("a"),
+      d = A[0],
+      n = A[1],
+      t = A[2] || "text/plain";
 
+    //build download link:
+    a.href = "data:" + strMimeType + "," + escape(strData);
+
+
+    if (window.MSBlobBuilder) {
+      var bb = new MSBlobBuilder();
+      bb.append(strData);
+      return navigator.msSaveBlob(bb, strFileName);
+    } /* end if(window.MSBlobBuilder) */
+    if ('download' in a) {
+      a.setAttribute("download", n);
+      a.innerHTML = "downloading...";
+      D.body.appendChild(a);
+      setTimeout(function() {
+        var e = D.createEvent("MouseEvents");
+        e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        a.dispatchEvent(e);
+        D.body.removeChild(a);
+      }, 66);
+      return true;
+    } /* end if('download' in a) */
+    ; //end if a[download]?
+
+    //do iframe dataURL download:
+    var f = D.createElement("iframe");
+    D.body.appendChild(f);
+    f.src = "data:" + (A[2] ? A[2] : "application/octet-stream") + (window.btoa ? ";base64" : "") + "," + (window.btoa ? window.btoa : escape)(strData);
+    setTimeout(function() {
+      D.body.removeChild(f);
+    }, 333);
+    return true;
+  } /* end download() */
 });
