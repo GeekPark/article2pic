@@ -22,6 +22,8 @@ $(function() {
     var $dom = $('#pluginDOM'),
         $content = $dom.find('#plugin-content');
 
+    $('body').css('background-color', '#E8E8E8');
+
     $dom.css({
       'position': 'absolute',
       'top': '80px',
@@ -30,7 +32,8 @@ $(function() {
       'width': '100%',
       'height': $(document).height(),
       'background': '#e8e8e8',
-      'text-align': 'center'
+      'text-align': 'center',
+      '-webkit-font-smoothing': 'antialiased'
     });
 
     $content.css({
@@ -91,7 +94,6 @@ $(function() {
       var $figure = $content.find('figure').eq(0);
       var $bannerimg = $figure.find('img').clone();
 
-      console.log($figure);
       $figure.after($bannerimg);
       $figure.remove();
     })();
@@ -105,6 +107,7 @@ $(function() {
       'margin': '1.4em 0',
       'line-height': '1.7rem'
     });
+
 
     applyCSS('h2', {
       'font-size': '1.8em',
@@ -175,6 +178,7 @@ $(function() {
 
       // Load user style
       pluginTool.read('style', function(data) {
+        if($.isEmptyObject(data)) return;
         var userStyle = $.parseJSON(data.style);
         applyStyle(userStyle);
       });
@@ -286,6 +290,7 @@ $(function() {
 
       // generPage when click post btn
       $('#plugin-post-to-wechat,#plugin-post-to-weibo').on('click', function () {
+        var type = $(this).data('type');
         generPage();
         // hide btn and get type
         $('#plugin-post-to-wechat,#plugin-post-to-weibo').addClass('hide');
@@ -294,9 +299,30 @@ $(function() {
                                       window.open(chrome.extension.getURL("options.html"));
                                     });
 
-        var type = $(this).data('type');
         if(type == 'weibo') {
           $('#plugin-generpic').removeClass('hide');
+          // weibo style
+          $('#plugin-content').css({
+            'width': '570px',
+            'padding': '15px',
+            'font-size': '25px'
+          }).find('p').css({
+            'line-height': '40px'
+          }).find('h2').css({
+            'font-size': '1.3em',
+          });
+
+          // 微博长图将所有的h2替换，因为h2转图片会使标题字错乱
+          $('#plugin-content').find('h2').each(function() {
+            var $this = $(this);
+            var style = $this.attr('style');
+            var $newTitle = $(document.createElement('div'));
+            $newTitle.text($this.text());
+            $newTitle.attr('style', style);
+            $newTitle.css('padding-left', '30px');
+            $this.after($newTitle);
+            $this.remove();
+          });
         }
 
         $('#plugin-generpic').on('click', function () {
