@@ -1,9 +1,9 @@
 {
-	"name": "极客公园文章优化",
-	"version": "1.3",
-	"manifest_version": 2,
-	"description": "将文章转化微信友好格式或保存为长微博图片",
-	"icons": {
+  "name": "极客公园文章优化",
+  "version": "1.4",
+  "manifest_version": 2,
+  "description": "将文章转化微信友好格式或保存为长微博图片",
+  "icons": {
     "16": "icon.png",
     "48": "icon.png",
     "128": "icon.png"
@@ -16,7 +16,7 @@
   ],
   "content_scripts": [
     {
-      "matches": ["http://*.geekpark.net/topics/*"],
+      "matches": ["http://*.geekpark.net/activities/*","http://*.geekpark.net/topics/*"],
       "js": ["dist/main.min.js"]
     }
   ],

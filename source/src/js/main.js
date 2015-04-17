@@ -403,3 +403,24 @@ $(function() {
     return true;
   } /* end download() */
 });
+
+$(function() {
+  if(!/activities\//.test(window.location.pathname)) return false;
+  if(/wechat$/.test(window.location.pathname)) return false;
+
+
+  var btnurl = chrome.extension.getURL('click_btn.html');
+
+  $.get(btnurl, function(data) {
+    $('body').append(data);
+
+    $('#plugin-inject-btn a').addClass('hide');
+
+    $('#plugin-event').removeClass('hide')
+      .on('click', function() {
+        location.href += '/wechat';
+      });
+  });
+
+
+});
