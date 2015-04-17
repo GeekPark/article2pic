@@ -159,11 +159,6 @@ $(function() {
       'background-color': '#efefef'
     });
 
-
-
-
-
-
     // Load remote style . Security ?
     // Remote style should be a JSON
     // format:
@@ -284,8 +279,7 @@ $(function() {
 
   // inject btn to page
   (function() {
-    var btnurl = chrome.extension.getURL('click_btn.html'),
-        $pluginContent = $('#plugin-content')
+    var btnurl = chrome.extension.getURL('click_btn.html');
     $.get(btnurl, function(data) {
       $('body').append(data);
 
@@ -302,8 +296,9 @@ $(function() {
 
         if(type == 'weibo') {
           $('#plugin-generpic').removeClass('hide');
-          // weibo style
+          var $pluginContent = $('#plugin-content');
 
+          // weibo style
           $pluginContent.css({
             'width': '570px',
             'padding': '15px',
@@ -312,7 +307,7 @@ $(function() {
             'line-height': '40px'
           }).find('h2').css({
             'font-size': '1.3em',
-          });
+          }).hide();
 
           // 微博长图将所有的h2替换，因为h2转图片会使标题字错乱
           // hack : fix h2 title text insanity error
@@ -361,47 +356,6 @@ $(function() {
     // when click btn then clean page
 
   })();
-
-  function download(strData, strFileName, strMimeType) {
-    var D = document,
-      A = arguments,
-      a = D.createElement("a"),
-      d = A[0],
-      n = A[1],
-      t = A[2] || "text/plain";
-
-    //build download link:
-    a.href = "data:" + strMimeType + "," + escape(strData);
-
-
-    if (window.MSBlobBuilder) {
-      var bb = new MSBlobBuilder();
-      bb.append(strData);
-      return navigator.msSaveBlob(bb, strFileName);
-    } /* end if(window.MSBlobBuilder) */
-    if ('download' in a) {
-      a.setAttribute("download", n);
-      a.innerHTML = "downloading...";
-      D.body.appendChild(a);
-      setTimeout(function() {
-        var e = D.createEvent("MouseEvents");
-        e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-        a.dispatchEvent(e);
-        D.body.removeChild(a);
-      }, 66);
-      return true;
-    } /* end if('download' in a) */
-    ; //end if a[download]?
-
-    //do iframe dataURL download:
-    var f = D.createElement("iframe");
-    D.body.appendChild(f);
-    f.src = "data:" + (A[2] ? A[2] : "application/octet-stream") + (window.btoa ? ";base64" : "") + "," + (window.btoa ? window.btoa : escape)(strData);
-    setTimeout(function() {
-      D.body.removeChild(f);
-    }, 333);
-    return true;
-  } /* end download() */
 });
 
 $(function() {
