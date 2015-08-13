@@ -5,8 +5,10 @@
 ####License: [MIT](http://choosealicense.com/licenses/mit/)
 
 ###安装
-1. 下载最新版[article2pic.crx](https://raw.githubusercontent.com/liyaodong/article2pic/master/article2pic.crx)文件
-2. 打开Chrome浏览器，进入`chrome://extensions/`地址。将下载好的crx插件拖入该页面并点击`add`或`添加`。
+1. ~~下载最新版[article2pic.crx](https://raw.githubusercontent.com/liyaodong/article2pic/master/article2pic.crx)文件~~
+2. ~~打开Chrome浏览器，进入`chrome://extensions/`地址。将下载好的crx插件拖入该页面并点击`add`或`添加`。~~
+
+插件已上架至 Google APP Store，请[前往下载](https://chrome.google.com/webstore/detail/article2pic/hnfdfcfjenohbfjhnhlpecikeocgdamd?hl=zh-CN)
 
 ###使用
 打开极客公园文章详情页，等待网页加载完毕后右上角会出现「发布到微信」和「发布到微博」按钮。
@@ -48,3 +50,7 @@ v1.2 继续调整文章样式，删除空白`<p>`，将图片从`<figure>`中移
 v1.3 调整微博端样式，使微博图片更加清晰易读。同时修复标题文字错乱的Bug。
 
 v1.4 活动详情页面增加微信样式导出链接跳转
+
+v1.5 增加二级标题的自定义样式选项
+
+v1.6 上架 Google APP Store 同时改名
