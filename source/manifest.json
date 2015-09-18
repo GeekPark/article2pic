@@ -1,6 +1,6 @@
 {
   "name": "article2pic",
-  "version": "1.6",
+  "version": "1.7",
   "manifest_version": 2,
   "description": "将文章转化微信友好格式或保存为长微博图片",
   "icons": {

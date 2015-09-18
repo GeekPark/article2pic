@@ -4,8 +4,6 @@ $(function() {
 
   var remoteStyleUrl = 'http://innoawards.geekpark.net/artile2pic-remotestyle.js';
 
-
-
   var generPage = function() {
     var $root = $('.container'),
         article = {};
@@ -80,6 +78,17 @@ $(function() {
     // delete needless node
     $content.find('.share').remove();
     $content.find('.gp_media_video').remove();
+    alert('good');
+
+    // convert picture tag to normal img tag
+    $content.find('picture').each(function () {
+      var $this = $(this);
+      var $img = $this.find('img').eq(0).clone();
+      $img.attr('src', $img.attr('srcset'));
+      $this.after($img);
+      $this.remove();
+    });
+
     // remove all empty p tag
     $content.find('p').filter(function () {
       return this.innerHTML
@@ -325,7 +334,7 @@ $(function() {
 
           // set crossOrigin be avoid canvas toDataURL security exception
           $pluginContent.find('img').prop('crossOrigin', 'Anonymous');
-        }
+        } // if weibo end
 
         $('#plugin-generpic').on('click', function () {
           // translate dom to pic and download
