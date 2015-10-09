@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
     clean: {
       options: { force: true },
-      stuff: ["../article2pic/", "../*.crx"]
+      stuff: ["../article2pic/", "../*.crx", "../*.zip"]
     },
     copy: {
       deploy: {
@@ -54,13 +54,27 @@ module.exports = function(grunt) {
         tasks:['sass']
       }
     },
+    compress: {
+      deploy: {
+        options: {
+          archive: '../article2pic.zip',
+          mode: 'zip'
+        },
+        files: [{
+          cwd: '../article2pic/',
+          expand: true,
+          src: '**/*'
+        }]
+      }
+    }
   });
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
   grunt.registerTask('default', ['uglify', 'sass', 'watch']);
-  grunt.registerTask('deploy', ['uglify', 'sass', 'clean', 'copy:deploy']);
+  grunt.registerTask('deploy', ['uglify', 'sass', 'clean', 'copy:deploy', 'compress:deploy']);
 };

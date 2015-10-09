@@ -78,7 +78,6 @@ $(function() {
     // delete needless node
     $content.find('.share').remove();
     $content.find('.gp_media_video').remove();
-    alert('good');
 
     // convert picture tag to normal img tag
     $content.find('picture').each(function () {
@@ -177,15 +176,14 @@ $(function() {
     //   {"selector":".article-author","value":"nihaowa"}
     // ]
     // like bwlow data
-    $.getJSON(remoteStyleUrl, function(remoteStyle) {
-      applyStyle(remoteStyle);
-
-      // Load user style
-      pluginTool.read('style', function(data) {
-        if($.isEmptyObject(data)) return;
-        var userStyle = $.parseJSON(data.style);
-        applyStyle(userStyle);
-      });
+    // $.getJSON(remoteStyleUrl, function(remoteStyle) {
+    //   applyStyle(remoteStyle);
+    // });
+    // Load user style
+    pluginTool.read('style', function(data) {
+      if($.isEmptyObject(data)) return;
+      var userStyle = $.parseJSON(data.style);
+      applyStyle(userStyle);
     });
 
 
