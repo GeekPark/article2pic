@@ -5,15 +5,14 @@ $(function() {
   var remoteStyleUrl = 'http://innoawards.geekpark.net/artile2pic-remotestyle.js';
 
   var generPage = function() {
-    var $root = $('.container'),
+    var $root = $('.main-wrap'),
         article = {};
 
     // read article data
     article.title = $root.find('.topic-title').text();
-    article.author = $root.find('.author').text();
-    article.avatar = $root.find('.author img').attr('src');
-    article.date = $root.find('span[itemprop=datePublished]').text();
-    article.content = $root.find('#article').html();
+    article.author = $root.find('.author span').text();
+    article.date = $root.find('.release-date').text();
+    article.content = $root.find('#article-body').html();
 
     $('body').append('<div id="pluginDOM"><div id="plugin-content"></div></div>');
 
@@ -26,7 +25,7 @@ $(function() {
       'position': 'absolute',
       'top': '80px',
       'left': '0',
-      'z-index': '5',
+      'z-index': '500',
       'width': '100%',
       'height': $(document).height(),
       'background': '#e8e8e8',
@@ -46,6 +45,14 @@ $(function() {
     pushToContent('article-author', article.author);
     pushToContent('article-content', article.content, 'dom');
 
+    // remove img lazy load
+    $content.find('img').each(function () {
+      $(this)
+        .removeClass('js-lazy blur loaded')
+        .attr('src', $(this).data('src') + '?imageView2/2/w/750')
+        .removeData('action src original vw');
+    });
+
     // append footerimg dom
     $content.append('<img id="article-footerimg" class="hide"></div>');
 
@@ -60,24 +67,16 @@ $(function() {
     };
 
     // adjust <img> size
-    applyCSS('img[itemprop!="image"]',{
-      'max-width': '95%',
-      'display': 'block',
-      'margin': '10px auto',
-      'height': 'auto'
-    });
-
-    applyCSS('img[itemprop="image"]',{
+    applyCSS('img',{
       'width': '100%',
-      'margin': '0',
+      'margin': '5px auto',
       'height': 'auto',
       'display': 'block'
     });
     applyCSS('figure', {'margin': '0'});
 
     // delete needless node
-    $content.find('.share').remove();
-    $content.find('.gp_media_video').remove();
+    $content.find('embed, video, .gp_media_video').remove();
 
     // convert picture tag to normal img tag
     $content.find('picture').each(function () {
@@ -118,7 +117,7 @@ $(function() {
 
 
     applyCSS('h2', {
-      'font-size': '1.8em',
+      'font-size': '1.6em',
       'border-left': '10px solid #7fc042',
       'padding-left': '0.5em',
       'margin': '0.6em auto',
@@ -344,6 +343,7 @@ $(function() {
               $('#plugin-content').remove();
               // console.log(canvas.toDataURL());
               $('#pluginDOM').append(canvas);
+              alert('图片已生成，请右键保存');
               // console.log(img);
               // $('#pluginDom')
               // download(img, document.title + ".jpg", "image/jpeg");
