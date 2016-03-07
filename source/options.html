@@ -60,10 +60,6 @@
             摘要：
             <input type="text">
           </li>
-          <li data-selector=".article-content">
-            正文：
-            <input type="text">
-          </li>
           <li data-selector="img[itemprop!='image']">
             图片：
             <input type="text">
@@ -89,6 +85,24 @@
     </div>
   </div>
 
+  <div class="item article-codeblock" id="codeblock">
+    <div class="head">
+      <h2 class="title">自定义代码块</h2>
+      <div class="des">在头部或者底部增加自定义的代码块，定制头部或者底部</div>
+      <button class="btn save" id="article-codeblock-save">保存</button>
+    </div>
+    <div class="cont">
+      <section class="code-item">
+        <div class="title">文章顶部</div>
+        <textarea data-type="top"></textarea>
+      </section>
+
+      <section class="code-item">
+        <div class="title">文章底部</div>
+        <textarea data-type="bottom"></textarea>
+      </section>
+    </div>
+  </div>
   <script src="dist/main.min.js"></script>
 </body>
 </html>

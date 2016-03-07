@@ -96,7 +96,7 @@ $(function() {
 
   (function() {
     // save style config
-    $root = $('#article-style');
+    var $root = $('#article-style');
 
     // loda storaged data
     pluginTool.read('style', function(data) {
@@ -126,4 +126,36 @@ $(function() {
       location.reload();
     });
   })();
+
+  (function() {
+    // save code block
+    var $root = $('#codeblock');
+    retriveOption();
+
+    $root.find('#article-codeblock-save').on('click', function() {
+      saveCodeBlock();
+    });
+
+    function saveCodeBlock() {
+      var json = {};
+
+      $root.find('textarea').each(function() {
+        var type = $(this).data('type');
+        json[type] = $(this).val();
+      });
+
+      pluginTool.save('codeblock', JSON.stringify(json));
+    }
+
+    function retriveOption() {
+      pluginTool.read('codeblock', function(data) {
+        var block = JSON.parse(data.codeblock);
+
+        for (var item in block) {
+          $root.find('textarea[data-type=' + item + ']').val(block[item]);
+        }
+      });
+    }
+  })();
+
 });

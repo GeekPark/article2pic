@@ -97,11 +97,6 @@ body {
       width: 80%; }
   .plugin-option .article-style .head {
     position: relative; }
-  .plugin-option .article-style .btn.save {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    margin-top: -15px; }
   .plugin-option .hide {
     display: none; }
   .plugin-option .input-item {
@@ -121,5 +116,23 @@ body {
     transition: all 0.3s ease; }
     .plugin-option .btn:hover {
       background: #9CDB61; }
+  .plugin-option .btn.save {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    display: block;
+    transform: translateY(-65%); }
+  .plugin-option .article-codeblock .head {
+    position: relative; }
+  .plugin-option .article-codeblock textarea {
+    width: 100%;
+    min-height: 100px;
+    outline: none; }
+  .plugin-option .article-codeblock .code-item {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top; }
+    .plugin-option .article-codeblock .code-item:first-child {
+      margin-right: 5%; }
 
 /*# sourceMappingURL=option.css.map */

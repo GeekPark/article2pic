@@ -122,12 +122,6 @@ body {
     .head {
       position: relative;
     }
-    .btn.save {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      margin-top: -15px;
-    }
   }
   .hide {
     display: none;
@@ -150,6 +144,33 @@ body {
     transition: all 0.3s ease;
     &:hover {
       background: #9CDB61;
+    }
+  }
+  .btn.save {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    display: block;
+    transform: translateY(-65%)
+  }
+  .article-codeblock {
+    .head {
+      position: relative;
+    }
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      outline: none;
+    }
+
+    .code-item {
+      width: 45%;
+      display: inline-block;
+      vertical-align: top;
+
+      &:first-child {
+        margin-right: 5%;
+      }
     }
   }
 }

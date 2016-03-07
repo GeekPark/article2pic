@@ -260,6 +260,22 @@ $(function() {
 
     })(); // change footer img end
 
+    // append codeblock items
+    (function() {
+      pluginTool.read('codeblock', function(d) {
+        var block = JSON.parse(d.codeblock);
+        for (var item in block) {
+          if (item === 'top') {
+            $content.prepend(block[item]);
+          }
+
+          if (item === 'bottom') {
+            $content.append(block[item]);
+          }
+        }
+      });
+    })();
+
     var optionPanel = (function() {
       var $panelDOM = $('#plugin-option-panel');
       function show () {
@@ -365,10 +381,10 @@ $(function() {
   })();
 });
 
+// inject button html
 $(function() {
   if(!/activities\//.test(window.location.pathname)) return false;
   if(/wechat$/.test(window.location.pathname)) return false;
-
 
   var btnurl = chrome.extension.getURL('click_btn.html');
 
@@ -382,6 +398,4 @@ $(function() {
         location.href += '/wechat';
       });
   });
-
-
 });
