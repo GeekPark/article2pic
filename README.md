@@ -62,3 +62,5 @@ v1.8 去除远程样式，修复自定义样式不起作用的问题，增加自
 v2.0 匹配新版主站文章页
 
 v2.1 增加 codeblock 顶部底部代码块
+
+v2.2 增加点评代码块，参考点评区块代码 [去复制](https://gist.githubusercontent.com/liyaodong/ce14ebf09f60616366a1a079e926c137/raw/5a38b81992736717f039ed9de68740e3617bcaa7/dianping.html)

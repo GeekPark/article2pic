@@ -2,8 +2,6 @@ $(function() {
   // the module just run in article page!
   if(!/topics/.test(window.location.pathname)) return false;
 
-  var remoteStyleUrl = 'http://innoawards.geekpark.net/artile2pic-remotestyle.js';
-
   var generPage = function() {
     var $root = $('.main-wrap'),
         article = {};
@@ -34,7 +32,7 @@ $(function() {
     });
 
     $content.css({
-      'width': '720px',
+      'width': '350px',
       'background': '#fff',
       'text-align': 'left',
       'margin': 'auto',
@@ -185,9 +183,6 @@ $(function() {
       applyStyle(userStyle);
     });
 
-
-
-
     function applyStyle (styleArr) {
       for (var i = 0; i < styleArr.length; i++) {
         var item = styleArr[i],
@@ -257,7 +252,6 @@ $(function() {
         });
 
       });
-
     })(); // change footer img end
 
     // append codeblock items
@@ -272,9 +266,27 @@ $(function() {
           if (item === 'bottom') {
             $content.append(block[item]);
           }
+
+          if (item === 'dianping') {
+            if (block[item] === '') return;
+
+            formatDianPing(_template(block[item]));
+          }
         }
       });
     })();
+
+    function formatDianPing(tmpl) {
+      $content.find('p')
+        .filter(function() {
+          return /点评：/.test(this.innerHTML);
+        })
+        .each(function() {
+          const text = $(this).text();
+          const resultHTML = tmpl({ text: text });
+          $(this).replaceWith(resultHTML);
+        });
+    }
 
     var optionPanel = (function() {
       var $panelDOM = $('#plugin-option-panel');
