@@ -32,7 +32,7 @@ $(function() {
     });
 
     $content.css({
-      'width': '350px',
+      'width': '720px',
       'background': '#fff',
       'text-align': 'left',
       'margin': 'auto',
