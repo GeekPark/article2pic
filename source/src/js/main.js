@@ -109,8 +109,7 @@ $(function() {
 
     // adjust style
     applyCSS('.article-content p', {
-      'margin': '1.4em 0',
-      'line-height': '1.7rem'
+      'margin': '1.4em 0'
     });
 
 
@@ -173,9 +172,6 @@ $(function() {
     //   {"selector":".article-author","value":"nihaowa"}
     // ]
     // like bwlow data
-    // $.getJSON(remoteStyleUrl, function(remoteStyle) {
-    //   applyStyle(remoteStyle);
-    // });
     // Load user style
     pluginTool.read('style', function(data) {
       if($.isEmptyObject(data)) return;
@@ -194,6 +190,10 @@ $(function() {
         $target.attr('style', newstyle);
       };
     }
+
+    $.getJSON('http://77g0kp.com1.z0.glb.clouddn.com/article-style.json?' + Math.random(), function(d) {
+      applyStyle(d);
+    });
 
     // change footer img
     (function() {
@@ -257,6 +257,7 @@ $(function() {
     // append codeblock items
     (function() {
       pluginTool.read('codeblock', function(d) {
+        if (d.codeblock === undefined) return;
         var block = JSON.parse(d.codeblock);
         for (var item in block) {
           if (item === 'top') {
