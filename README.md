@@ -68,3 +68,5 @@ v2.2 增加点评代码块，参考点评区块代码 [去复制](https://gist.g
 v2.3 Fix image bug
 
 v2.4 Add remote style control, geekpark-test:article-style.json
+
+v2.5 Fix merge style bug
