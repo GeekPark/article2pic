@@ -185,10 +185,27 @@ $(function() {
             $target = $content.find(item.selector),
             oldstyle = $target.attr('style'),
             newstyle = item.value;
-
-        if(oldstyle) newstyle = oldstyle + newstyle;
-        $target.attr('style', newstyle);
+        // if(oldstyle) newstyle = oldstyle + newstyle;
+        $target.attr('style', mergeStyle(oldstyle, newstyle));
       };
+    }
+
+    function mergeStyle (oldstyle, newstyle) {
+      var oldArr = String(oldstyle).trim().split(/\s*[:;]\s*/),
+          newArr = String(newstyle).trim().split(/\s*[:;]\s*/),
+          styleObj = {}, key, i, result = '';
+      for (i = 0; i < oldArr.length; i += 2) {
+        styleObj[oldArr[i]] = oldArr[i + 1];
+      }
+      for (i = 0; i < newArr.length; i += 2) {
+        styleObj[newArr[i]] = newArr[i + 1];
+      }
+      delete styleObj[''];
+      delete styleObj[undefined];
+      for (key in styleObj) {
+        result += key + ': ' + styleObj[key] + '; ';
+      }
+      return result;
     }
 
     $.getJSON('http://77g0kp.com1.z0.glb.clouddn.com/article-style.json?' + Math.random(), function(d) {
